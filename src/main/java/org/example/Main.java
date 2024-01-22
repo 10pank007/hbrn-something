@@ -1,5 +1,6 @@
 package org.example;
 
+import models.GENDER;
 import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,6 +9,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.util.Arrays;
 import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -25,19 +27,16 @@ public class Main {
         session.beginTransaction();
 
         //crud
-//        User vasil = new User("vasil");
-//        User alexandr = new User("alexandr");
-//        User volodimir = new User("volodimir");
-//        User vitaliy = new User("vitaliy");
-//        session.save(vasil);
-//        session.save(alexandr);
-//        session.save(volodimir);
-//        session.save(vitaliy);
-//        User user = session.find(User.class, 1);
-//        System.out.println(user);
-//        List<User> list = session.createNativeQuery("select * from user", User.class).list();
-        List<User> list = session.createQuery("select u from User u", User.class).list();
-        System.out.println(list);
+        User vasil = new User("vasil", GENDER.MALE, List.of("java", "js", "html"));
+        User alexandr = new User("alexandr", GENDER.FEMALE, List.of("mongo", "sql"));
+        User volodimir = new User("volodimir", GENDER.MALE, List.of("docker"));
+        User vitaliy = new User("vitaliy", GENDER.FEMALE);
+        session.save(vasil);
+        session.save(alexandr);
+        session.save(volodimir);
+        session.save(vitaliy);
+
+
 
         session.getTransaction().commit();
         session.close();
